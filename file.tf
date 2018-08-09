@@ -3,5 +3,5 @@ resource "aws_instance" "web" {
   tags {
     Name = "test_tf"
   }
-  ami = ""
+  ami = "ami-2a69aa47"
 }
