@@ -1,7 +1,70 @@
+resource "aws_security_group" "InstanceSecGroup" {
+  vpc_id = "vpc-09fc024f9212e9c1f"
+  ingress = [
+    {
+      from_port = 22
+      protocol = "tcp"
+      to_port = 22
+    },
+    {
+    from_port = 80
+    protocol = "tcp"
+    to_port = 80
+    }
+  ]
+  egress = [
+    {
+      from_port = 22
+      protocol = "tcp"
+      to_port = 22
+},
+    {
+      from_port = 80
+      protocol = "tcp"
+      to_port = 80
+    }
+  ]
+
+}
+
+resource "aws_alb_target_group" "AlbTargetGroup" {
+  port = 80
+  protocol = "HTTP"
+  vpc_id = "${aws_security_group.InstanceSecGroup.vpc_id}"
+  health_check {
+    interval = 30
+    timeout = 5
+    healthy_threshold = 3
+    unhealthy_threshold = 5
+  }
+  target_type = "instance"
+  stickiness {
+    enabled = true
+    type = "lb_cookie"
+    cookie_duration = 180
+  }
+}
+
+resource "aws_alb" "AppLoadBalancer" {
+  security_groups = "[${aws_security_group.InstanceSecGroup.id}]"
+  subnets = ["subnet-049eb8282c546ed44","subnet-0bbd9acc50009f861"]
+}
+
+resource "aws_alb_listener" "AlbListener" {
+  "default_action" {
+    target_group_arn = "${aws_alb_target_group.AlbTargetGroup.arn}"
+    type = "forward"
+  }
+  load_balancer_arn = "${aws_alb.AppLoadBalancer.arn}"
+  port = 80
+  protocol = "HTTP"
+}
+
 resource "aws_instance" "web" {
   instance_type = "t1.micro"
   tags {
     Name = "test_tf"
   }
   ami = "ami-2a69aa47"
+
 }
