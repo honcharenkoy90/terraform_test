@@ -65,17 +65,27 @@ resource "aws_alb_listener" "AlbListener" {
   protocol          = "HTTP"
 }
 
+data "template_file" "user_data" {
+  template = "${file("${path.module}/usr_data.tpl")}"
+
+  vars {
+    cluster = "nginx"
+  }
+}
+
 resource "aws_instance" "web" {
-  instance_type = "t2.micro"
-  key_name = "test"
-  subnet_id = "subnet-049eb8282c546ed44"
+  instance_type               = "t2.micro"
+  key_name                    = "test"
+  subnet_id                   = "subnet-049eb8282c546ed44"
   associate_public_ip_address = true
-  security_groups = ["${aws_security_group.InstanceSecGroup.id}"]
+  security_groups             = ["${aws_security_group.InstanceSecGroup.id}"]
+
   tags {
     Name = "test_tf"
   }
-  ami = "ami-cfe4b2b0"
-  user_data =  "#!/bin/bash -xe\n yum -y update\n yum -y install nginx\n service nginx restart\n"
+
+  ami       = "ami-cfe4b2b0"
+  user_data = "${data.template_file.user_data.rendered}"
 }
 
 resource "aws_alb_target_group_attachment" "AttachmentToInstance" {
