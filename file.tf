@@ -49,7 +49,7 @@ resource "aws_alb_target_group" "AlbTargetGroup" {
   stickiness {
     enabled         = true
     type            = "lb_cookie"
-    cookie_duration = 180
+    cookie_duration = 200
   }
 }
 
