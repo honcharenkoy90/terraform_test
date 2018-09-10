@@ -1,0 +1,41 @@
+Aug 31, 2018 3:13:19 PM hudson.remoting.jnlp.Main createEngine
+INFO: Setting up agent: linux-terraform-node
+Aug 31, 2018 3:13:19 PM hudson.remoting.jnlp.Main$CuiListener <init>
+INFO: Jenkins agent is running in headless mode.
+Aug 31, 2018 3:13:19 PM hudson.remoting.Engine startEngine
+INFO: Using Remoting version: 3.21.1
+Aug 31, 2018 3:13:19 PM org.jenkinsci.remoting.engine.WorkDirManager initializeWorkDir
+INFO: Using /home/vagrant/project/terraform_test/remoting as a remoting work directory
+Aug 31, 2018 3:13:19 PM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Locating server among [http://10.1.0.113:8080/]
+Aug 31, 2018 3:13:19 PM org.jenkinsci.remoting.engine.JnlpAgentEndpointResolver resolve
+INFO: Remoting server accepts the following protocols: [JNLP4-connect, Ping]
+Aug 31, 2018 3:13:19 PM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Agent discovery successful
+  Agent address: 10.1.0.113
+  Agent port:    50000
+  Identity:      00:23:2b:b2:90:b4:94:cb:b8:7b:a1:73:a5:b4:b6:db
+Aug 31, 2018 3:13:19 PM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Handshaking
+Aug 31, 2018 3:13:19 PM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Connecting to 10.1.0.113:50000
+Aug 31, 2018 3:13:19 PM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Trying protocol: JNLP4-connect
+Aug 31, 2018 3:13:19 PM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Remote identity confirmed: 00:23:2b:b2:90:b4:94:cb:b8:7b:a1:73:a5:b4:b6:db
+Aug 31, 2018 3:13:20 PM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Connected
+Aug 31, 2018 3:13:23 PM org.jenkinsci.remoting.util.AnonymousClassWarnings warn
+WARNING: Attempt to (de-)serialize anonymous class org.jenkinsci.plugins.envinject.EnvInjectComputerListener$2; see: https://jenkins.io/redirect/serialization-of-anonymous-classes/
+Aug 31, 2018 3:19:59 PM org.jenkinsci.remoting.util.AnonymousClassWarnings warn
+WARNING: Attempt to (de-)serialize anonymous class org.jenkinsci.plugins.envinject.service.EnvironmentVariablesNodeLoader$1; see: https://jenkins.io/redirect/serialization-of-anonymous-classes/
+Aug 31, 2018 3:19:59 PM org.jenkinsci.remoting.util.AnonymousClassWarnings warn
+WARNING: Attempt to (de-)serialize anonymous class org.jenkinsci.plugins.envinject.service.EnvInjectActionSetter$1; see: https://jenkins.io/redirect/serialization-of-anonymous-classes/
+Aug 31, 2018 3:19:59 PM org.jenkinsci.remoting.util.AnonymousClassWarnings warn
+WARNING: Attempt to (de-)serialize anonymous class org.jenkinsci.plugins.gitclient.Git$1; see: https://jenkins.io/redirect/serialization-of-anonymous-classes/
+Aug 31, 2018 3:20:05 PM org.jenkinsci.remoting.util.AnonymousClassWarnings warn
+WARNING: Attempt to (de-)serialize anonymous class org.jenkinsci.plugins.gitclient.RemoteGitImpl$CommandInvocationHandler$1; see: https://jenkins.io/redirect/serialization-of-anonymous-classes/
+Aug 31, 2018 3:21:52 PM org.jenkinsci.remoting.util.AnonymousClassWarnings warn
+WARNING: Attempt to (de-)serialize anonymous class hudson.FilePath$28; see: https://jenkins.io/redirect/serialization-of-anonymous-classes/
+Aug 31, 2018 3:29:05 PM org.jenkinsci.remoting.util.AnonymousClassWarnings warn
+WARNING: Attempt to (de-)serialize anonymous class hudson.FilePath$11; see: https://jenkins.io/redirect/serialization-of-anonymous-classes/

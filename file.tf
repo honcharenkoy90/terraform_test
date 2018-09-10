@@ -38,7 +38,7 @@ resource "aws_alb_target_group" "AlbTargetGroup" {
   vpc_id   = "${aws_security_group.InstanceSecGroup.vpc_id}"
 
   health_check {
-    interval            = 30
+    interval            = 15
     timeout             = 5
     healthy_threshold   = 3
     unhealthy_threshold = 5
