@@ -90,6 +90,11 @@ resource "aws_instance" "web" {
 
   ami       = "ami-cfe4b2b0"
   user_data = "${data.template_file.user_data.rendered}"
+
+  provisioner "file" {
+    source = "${file("${path.module}/index.html")}"
+    destination = "/usr/share/nginx/html/index.html"
+  }
 }
 
 resource "aws_alb_target_group_attachment" "AttachmentToInstance" {
