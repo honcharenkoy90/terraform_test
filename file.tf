@@ -92,7 +92,7 @@ resource "aws_instance" "web" {
   user_data = "${data.template_file.user_data.rendered}"
 
   provisioner "file" {
-    source = "${file("${path.module}/index.html")}"
+    source = "/index.html"
     destination = "/usr/share/nginx/html/index.html"
   }
 }
