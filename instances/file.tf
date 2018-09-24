@@ -38,7 +38,7 @@ resource "aws_alb_target_group" "AlbTargetGroup" {
   vpc_id   = "${aws_security_group.InstanceSecGroup.vpc_id}"
 
   health_check {
-    interval            = 15
+    interval            = 30
     timeout             = 5
     healthy_threshold   = 3
     unhealthy_threshold = 5
@@ -49,7 +49,7 @@ resource "aws_alb_target_group" "AlbTargetGroup" {
   stickiness {
     enabled         = true
     type            = "lb_cookie"
-    cookie_duration = 200
+    cookie_duration = 180
   }
 }
 
@@ -70,7 +70,7 @@ resource "aws_alb_listener" "AlbListener" {
 }
 
 data "template_file" "user_data" {
-  template = "${file("${path.module}/usr_data.tpl")}"
+  template = "${file("${path.module}/templates/usr_data.tpl")}"
 
   vars {
     cluster = "nginx"
@@ -91,10 +91,36 @@ resource "aws_instance" "web" {
   ami       = "ami-cfe4b2b0"
   user_data = "${data.template_file.user_data.rendered}"
 
-  provisioner "file" {
-    source = "/index.html"
+   connection {
+    type     = "ssh"
+    user     = "ec2-user"
+    private_key = "${file("/home/vagrant/aws/test.pem")}"
+    agent = "false"
+  }
+
+/*  provisioner "file" {
+    connection {
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = "${file("/home/vagrant/aws/test.pem")}"
+      agent       = "false"
+    }
+
+    source      = "${file("${path.module}/config/index.html")}"
     destination = "/usr/share/nginx/html/index.html"
   }
+
+  provisioner "remote-exec" {
+    connection {
+      type     = "ssh"
+      user     = "ec2-user"
+      private_key = "${file("/home/vagrant/aws/test.pem")}"
+      agent = "false"
+    }
+    inline = [
+      "service nginx restart"
+    ]
+  }*/
 }
 
 resource "aws_alb_target_group_attachment" "AttachmentToInstance" {
