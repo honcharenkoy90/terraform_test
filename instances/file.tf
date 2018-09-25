@@ -91,37 +91,6 @@ resource "aws_instance" "web" {
 
   ami       = "ami-cfe4b2b0"
   user_data = "${data.template_file.user_data.rendered}"
-
-   connection {
-    type     = "ssh"
-    user     = "ec2-user"
-    private_key = "${file("/home/vagrant/aws/test.pem")}"
-    agent = "false"
-  }
-
-  provisioner "file" {
-    connection {
-      type        = "ssh"
-      user        = "ec2-user"
-      private_key = "${file("/home/vagrant/aws/test.pem")}"
-      agent       = "false"
-    }
-
-    source      = "${file("${path.module}/config/index.html")}"
-    destination = "/usr/share/nginx/html/index.html"
-  }
-
-  /*provisioner "remote-exec" {
-    connection {
-      type     = "ssh"
-      user     = "ec2-user"
-      private_key = "${file("/home/vagrant/aws/test.pem")}"
-      agent = "false"
-    }
-    inline = [
-      "service nginx restart"
-    ]
-  }*/
 }
 
 resource "aws_alb_target_group_attachment" "AttachmentToInstance" {

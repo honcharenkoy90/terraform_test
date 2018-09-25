@@ -1,9 +1,5 @@
-#!/bin/bash
-yum -y update
-yum -y install nginx
-
+#!/bin/bash -xe
 rm /usr/share/nginx/html/index.html
-
 cat <<FILE > /usr/share/nginx/html/index.html
 <!DOCTYPE html PUBLIC>
  <html>
@@ -16,4 +12,4 @@ cat <<FILE > /usr/share/nginx/html/index.html
 </html>
 FILE
 
-service nginx restart
+systemctl restart nginx
