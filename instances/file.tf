@@ -1,3 +1,4 @@
+
 resource "aws_security_group" "InstanceSecGroup" {
   vpc_id = "vpc-09fc024f9212e9c1f"
 
@@ -98,7 +99,7 @@ resource "aws_instance" "web" {
     agent = "false"
   }
 
-/*  provisioner "file" {
+  provisioner "file" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
@@ -110,7 +111,7 @@ resource "aws_instance" "web" {
     destination = "/usr/share/nginx/html/index.html"
   }
 
-  provisioner "remote-exec" {
+  /*provisioner "remote-exec" {
     connection {
       type     = "ssh"
       user     = "ec2-user"
