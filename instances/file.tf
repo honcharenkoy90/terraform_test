@@ -1,6 +1,6 @@
 
 resource "aws_security_group" "InstanceSecGroup" {
-  vpc_id = "vpc-09fc024f9212e9c1f"
+  vpc_id = "vpc-0d1557748f1bf9f45"
 
   ingress = [
     {
@@ -56,7 +56,7 @@ resource "aws_alb_target_group" "AlbTargetGroup" {
 
 resource "aws_alb" "AppLoadBalancer" {
   security_groups = ["${aws_security_group.InstanceSecGroup.id}"]
-  subnets         = ["subnet-049eb8282c546ed44", "subnet-0bbd9acc50009f861"]
+  subnets         = ["subnet-045172ad390575727", "subnet-0f469264e3a276b3f"]
 }
 
 resource "aws_alb_listener" "AlbListener" {
@@ -70,6 +70,7 @@ resource "aws_alb_listener" "AlbListener" {
   protocol          = "HTTP"
 }
 
+
 data "template_file" "user_data" {
   template = "${file("${path.module}/templates/usr_data.tpl")}"
 
@@ -80,8 +81,8 @@ data "template_file" "user_data" {
 
 resource "aws_instance" "web" {
   instance_type               = "t2.micro"
-  key_name                    = "test"
-  subnet_id                   = "subnet-049eb8282c546ed44"
+  key_name                    = "${var.key}"
+  subnet_id                   = "subnet-045172ad390575727"
   associate_public_ip_address = true
   security_groups             = ["${aws_security_group.InstanceSecGroup.id}"]
 
@@ -98,3 +99,4 @@ resource "aws_alb_target_group_attachment" "AttachmentToInstance" {
   target_group_arn = "${aws_alb_target_group.AlbTargetGroup.arn}"
   target_id        = "${aws_instance.web.id}"
 }
+

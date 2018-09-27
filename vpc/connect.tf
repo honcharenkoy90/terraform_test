@@ -6,7 +6,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket                  = "trfm-bucke-test"
+    bucket                  = "trfm-bucket-vpc"
     key                     = "test"
     region                  = "us-east-1"
     shared_credentials_file = "/home/vagrant/.aws/creds"
