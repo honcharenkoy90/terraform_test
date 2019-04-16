@@ -7,9 +7,10 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket                  = "terraform-state-test-lesson1"
-    key                     = "lesson1"
+    key                     = "vpc/terraform.tfstate"
     region                  = "us-east-1"
     shared_credentials_file = "C:/Users/Yurii_Honcharenko/.aws/credentials"
+    dynamodb_table          = "terraform-lock"
     profile                 = "terraform"
   }
 }

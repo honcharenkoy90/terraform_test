@@ -1,3 +1,7 @@
 .idea
 /remoting
 .terraform
+/idea
+/.idea
+/app/.terraform
+/vpc/.terraform
