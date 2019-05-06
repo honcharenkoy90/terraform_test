@@ -1,6 +1,6 @@
 provider "aws" {
   region                  = "${var.region}"
-  shared_credentials_file = "c:/users/Yurii_Honcharenko/.aws/credentials"
+  shared_credentials_file = "${var.shared_creds_file_path}"
   profile                 = "${var.profile}"
 }
 

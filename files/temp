@@ -1,0 +1,20 @@
+#!/bin/bash
+apt-get -y update
+apt-get -y install nginx
+apt-get install -y awscli
+
+rm /usr/share/nginx/html/index.html
+
+aws cp s3://nginx-configuration-lesson1/default.conf /etc/nginx/sites-enabled/default.conf
+
+cat <<FILE > /usr/share/nginx/html/index.html
+<!DOCTYPE html PUBLIC>
+ <html>
+ <body>
+ <h1> Terraform Test Home Work </h1>
+ <p> Ha ha ha! Its working now!</p>
+ </body>
+</html>
+FILE
+
+service nginx restart

@@ -38,7 +38,7 @@ resource "aws_security_group" "hm-sg-asg" {
       from_port       = 80
       protocol        = "tcp"
       to_port         = 80
-      cidr_blocks     = ["${var.cidr_default}"]
+      security_groups     = ["${aws_security_group.hm-sg-elb.id}"]
     },
   ]
 
