@@ -3,10 +3,21 @@ resource "aws_s3_bucket" "testbucket" {
     enabled = true
   }
 
-  bucket = "terraform-state-${var.project}"
+  bucket = "${var.bucket_name}-${var.project}"
 
   tags {
-    Name = "lesson1"
-    Env  = "stage"
+    Env = "${terraform.workspace}"
   }
+}
+
+resource "aws_s3_bucket_object" "hm-s3-object-conf" {
+  bucket = "${aws_s3_bucket.testbucket.id}"
+  key    = "nginx.conf"
+  source = "../files/nginx.conf"
+}
+
+resource "aws_s3_bucket_object" "hm-s3-object-site" {
+  bucket = "${aws_s3_bucket.testbucket.id}"
+  key    = "index.html"
+  source = "../files/index.html"
 }
